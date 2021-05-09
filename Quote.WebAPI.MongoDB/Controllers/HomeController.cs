@@ -15,15 +15,18 @@ namespace Quote.WebAPI.MongoDB.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
+
+        [Route("quote")]
+        [Route("quote/index")]
+        [Route("quote/create")]
+        [Route("quote/edit")]
+        [Route("quote/delete")]
+        [Route("quote/detail")]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
