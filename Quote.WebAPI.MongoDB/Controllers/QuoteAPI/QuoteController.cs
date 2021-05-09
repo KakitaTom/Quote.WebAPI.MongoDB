@@ -66,11 +66,12 @@ namespace Quote.WebAPI.MongoDB.Controllers.QuoteAPI
 
 
 
+        //Danger Section
 
         //Tạo cho vui, không được sử dụng
         [Route("api/quote/detail/{id}")]
         [HttpGet]
-        //[ApiExplorerSettings(IgnoreApi = true)]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public IHttpActionResult DetailQuote(string id)
         {
             if (!isExistQuote(id))
@@ -86,7 +87,7 @@ namespace Quote.WebAPI.MongoDB.Controllers.QuoteAPI
         //Tạo cho vui, không được sử dụng
         [Route("api/quote/create")]
         [HttpPost]
-        //[ApiExplorerSettings(IgnoreApi = true)]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public IHttpActionResult CreateQuote(Models.Quote quote)
         {
             if (!ModelState.IsValid)
@@ -103,7 +104,7 @@ namespace Quote.WebAPI.MongoDB.Controllers.QuoteAPI
         //Tạo cho vui, không được sử dụng
         [Route("api/quote/edit/{id}")]
         [HttpPost]
-        //[ApiExplorerSettings(IgnoreApi = true)]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public IHttpActionResult EditQuote(Models.Quote quote)
         {
             if (!ModelState.IsValid)
@@ -122,7 +123,7 @@ namespace Quote.WebAPI.MongoDB.Controllers.QuoteAPI
         //Tạo cho vui, không được sử dụng
         [Route("api/quote/delete/{id}")]
         [HttpDelete]
-        //[ApiExplorerSettings(IgnoreApi = true)]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public IHttpActionResult DeleteQuote(string id)
         {
             if (!isExistQuote(id))
