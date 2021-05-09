@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Quote.WebAPI.MongoDB.Models
 {
     public class Quote
     {
-        public string id { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
 
         [Required]
-        public string text { get; set; }
+        public string Text { get; set; }
 
         [Required]
-        public string author { get; set; }
+        public string Author { get; set; }
     }
 }
