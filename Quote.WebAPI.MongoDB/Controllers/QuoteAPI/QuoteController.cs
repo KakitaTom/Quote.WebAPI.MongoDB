@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -20,7 +21,6 @@ namespace Quote.WebAPI.MongoDB.Controllers.QuoteAPI
 //            string constr = ConfigurationManager.AppSettings["connectionString"];
 //            var Client = new MongoClient(constr);
 
-
             // MongoDB Cluster
             var Client = new MongoClient("mongodb+srv://Admin:Admin@quotecluster.xqmtl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 
@@ -28,6 +28,7 @@ namespace Quote.WebAPI.MongoDB.Controllers.QuoteAPI
             _db = Client.GetDatabase("QuoteAPI").GetCollection<Models.Quote>("Quote");
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         public bool isExistQuote(string Id)
         {
             var quote = _db.Find(new BsonDocument()).ToList().SingleOrDefault(q => q.Id.Equals(Id));
@@ -63,9 +64,13 @@ namespace Quote.WebAPI.MongoDB.Controllers.QuoteAPI
             return Ok(_db.Find(new BsonDocument()).ToList().OrderBy(q => Guid.NewGuid()).Take(count));
         }
 
+
+
+
         //Tạo cho vui, không được sử dụng
         [Route("api/quote/detail/{id}")]
         [HttpGet]
+        //[ApiExplorerSettings(IgnoreApi = true)]
         public IHttpActionResult DetailQuote(string id)
         {
             if (!isExistQuote(id))
@@ -76,9 +81,12 @@ namespace Quote.WebAPI.MongoDB.Controllers.QuoteAPI
             return Ok(_db.Find(new BsonDocument()).ToList().SingleOrDefault(q => q.Id.Equals(id)));
         }
 
+
+
         //Tạo cho vui, không được sử dụng
         [Route("api/quote/create")]
         [HttpPost]
+        //[ApiExplorerSettings(IgnoreApi = true)]
         public IHttpActionResult CreateQuote(Models.Quote quote)
         {
             if (!ModelState.IsValid)
@@ -90,10 +98,12 @@ namespace Quote.WebAPI.MongoDB.Controllers.QuoteAPI
             return Created(new Uri(Request.RequestUri + "/" + quote.Id), quote);
         }
 
-        
+
+
         //Tạo cho vui, không được sử dụng
         [Route("api/quote/edit/{id}")]
         [HttpPost]
+        //[ApiExplorerSettings(IgnoreApi = true)]
         public IHttpActionResult EditQuote(Models.Quote quote)
         {
             if (!ModelState.IsValid)
@@ -108,9 +118,11 @@ namespace Quote.WebAPI.MongoDB.Controllers.QuoteAPI
             return Ok(_db.Find(new BsonDocument()).ToList().SingleOrDefault(q => q.Id.Equals(quote.Id)));
         }
 
+
         //Tạo cho vui, không được sử dụng
         [Route("api/quote/delete/{id}")]
         [HttpDelete]
+        //[ApiExplorerSettings(IgnoreApi = true)]
         public IHttpActionResult DeleteQuote(string id)
         {
             if (!isExistQuote(id))

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace Quote.WebAPI.MongoDB.Models
 {
@@ -12,6 +13,7 @@ namespace Quote.WebAPI.MongoDB.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
+        [JsonIgnore]
         public string Id { get; set; }
 
         [Required]
