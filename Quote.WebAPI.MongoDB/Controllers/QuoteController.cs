@@ -30,7 +30,7 @@ namespace Quote.WebAPI.MongoDB.Controllers
             _db = Client.GetDatabase("QuoteAPI").GetCollection<Models.Quote>("Quote");
         }
 
-        
+        [System.Web.Mvc.Route("cdtn/index")]
         [System.Web.Mvc.Route("cdtn/all")]
         [System.Web.Mvc.HttpGet]
         public ActionResult Index()
